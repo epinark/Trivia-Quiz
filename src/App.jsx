@@ -52,14 +52,14 @@ export default function App() {
 
   return (
     <>
-      <div className={`App ${theme === 'dark' ? 'dark' : 'light'}`} style={{ backgroundColor: theme === 'dark' ? '#333' : '#fff', color: theme === 'dark' ? '#fff' : '#333' }}>
+      <div className={`App ${theme === 'dark' ? 'dark' : 'light'}`} style={{ backgroundColor: theme === 'dark' ? '#333' : '#f6f6f6', color: theme === 'dark' ? '#f6f6f6' : '#333' }}>
 
-        <button onClick={toggleTheme} className="flex items-center gap-2 p-2 m-2 ml-auto">
+        <button onClick={toggleTheme} className="flex items-center gap-2 p-2 m-2 my-auto ml-auto rounded border shadow-sm">
           <i className={`fas ${theme === 'light' ? 'fa-moon' : 'fa-sun'}`}></i>
           Toggle Theme
         </button>
-        <div className='flex flex-col justify-center items-center text-center h-screen font-serif text-lg font-bold'>
-          <h1>Trivia Questions</h1>
+        <div className='flex flex-col justify-center items-center text-center min-h-screen font-serif text-lg font-bold'>
+          <h1 className='mb-8'>Trivia Questions</h1>
           {loading ? (
             <p>Loading...</p>
           ) : (
@@ -87,7 +87,7 @@ export default function App() {
                   {questionsData.map((question) => (
                     <li className='p-2 m-2' key={question.id}>
                       {question.question}
-                      <div className='text-green-900'>
+                      <div className='text-green-700'>
                         Correct Answer: {question.correctAnswer}
                       </div>
                       <div style={{
@@ -100,13 +100,12 @@ export default function App() {
                     </li>
                   ))}
                 </ul>
-
-                <button className="rounded border cursor-pointer self-center p-2 m-4 bg-green" onClick={restartGame}>Restart game</button>
+                <button className="rounded border cursor-pointer self-center p-2 m-4 mb-4 bg-green shadow-sm" onClick={restartGame}>Restart Quiz</button>
               </div>
             </Modal>
           ) : (
             currentIndex === questionsData.length - 1 && (
-              <button className="rounded border cursor-pointer self-center p-2 m-4" disabled={!selectedAnswers[questionsData[currentIndex].id]} onClick={handleCompleteButton}>Complete the Test</button>
+              <button className="rounded border cursor-pointer self-center p-2 m-4 shadow-sm" disabled={!selectedAnswers[questionsData[currentIndex].id]} onClick={handleCompleteButton}>Complete the Test</button>
             )
           )}
         </div>
