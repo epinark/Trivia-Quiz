@@ -11,9 +11,9 @@ export default function Question({ question, currentIndex, setCurrentIndex, sele
 
     return (
         <div className="flex flex-col justify-center text-center items-center">
-            <p className="p-2 m-2">Question {currentIndex + 1}</p>
+            <p className="p-2 m-2 mb-6">Question {currentIndex + 1}</p>
             <p>{question.question}</p>
-            <div className="flex flex-col sm:flex-row justify-center text-center gap-5 p-2 m-2 self-center items-center">
+            <div className="flex flex-col sm:flex-row justify-center text-center gap-5 p-2 m-4 self-center items-center">
                 {question.answers.map((answer, index) => (
                     <div key={index}>
                         <button

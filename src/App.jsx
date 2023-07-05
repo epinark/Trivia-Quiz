@@ -52,7 +52,7 @@ export default function App() {
 
   return (
     <>
-      <div className={`App ${theme === 'dark' ? 'dark' : 'light'}`} style={{ backgroundColor: theme === 'dark' ? '#333' : '#f6f6f6', color: theme === 'dark' ? '#f6f6f6' : '#333' }}>
+      <div className={`App ${theme === 'dark' ? 'dark' : 'light'}`} style={{ backgroundColor: theme === 'dark' ? '#181818' : '#f6f6f6', color: theme === 'dark' ? '#f6f6f6' : '#181818' }}>
 
         <button onClick={toggleTheme} className="flex items-center gap-2 p-2 m-2 my-auto ml-auto rounded border shadow-sm">
           <i className={`fas ${theme === 'light' ? 'fa-moon' : 'fa-sun'}`}></i>
@@ -76,7 +76,7 @@ export default function App() {
           )}
           {showResult ? (
             <Modal isOpen={true} onRequestClose={restartGame}>
-              <div className='flex flex-col justify-center items-center text-center h-screen font-serif text-lg font-bold p-2 m-2'>
+              <div className='flex flex-col items-center text-center h-screen font-sans text-lg font-bold p-2 m-2'>
                 <h1 className='p-2 m-2'>Quiz Finished!</h1>
                 <h2 className='p-2 m-2'>Final Score: </h2>
                 <h2>
@@ -100,7 +100,7 @@ export default function App() {
                     </li>
                   ))}
                 </ul>
-                <button className="rounded border cursor-pointer self-center p-2 m-4 mb-4 bg-green shadow-sm" onClick={restartGame}>Restart Quiz</button>
+                <button className="rounded border sm:mb-2 cursor-pointer self-center p-2 m-2 bg-green shadow-sm" onClick={restartGame}>Restart Quiz</button>
               </div>
             </Modal>
           ) : (
