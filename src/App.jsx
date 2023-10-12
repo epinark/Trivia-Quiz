@@ -123,7 +123,7 @@ export default function App() {
           ) : (
             currentIndex === questionsData.length - 1 && (
               <button
-                className="rounded border cursor-pointer p-2 shadow-sm mt-4"
+                className="rounded cursor-pointer p-2 shadow-custom bg-red mt-4"
                 disabled={!selectedAnswers[questionsData[currentIndex].id]}
                 onClick={handleCompleteButton}
               >

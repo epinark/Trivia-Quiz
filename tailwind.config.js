@@ -8,10 +8,15 @@ export default {
     extend: {
       backgroundColor: {
         'custom-color': 'rgb(220, 199, 199)',
-        'purple': '#e4e6f8',
-        'mint': '#C4DFDF'
+        'purple': '#EEE0C9',
+        'mint': '#AED8CC',
+        'red': '#A2678A'
+      },
+      boxShadow: {
+        'custom': '0 4px 10px rgba(0, 0, 0, 0.6)',
       },
     },
   },
   plugins: [],
+
 }
