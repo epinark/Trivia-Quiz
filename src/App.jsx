@@ -57,17 +57,17 @@ export default function App() {
         style={{
           backgroundColor: theme === "dark" ? "#181818" : "#f6f6f6",
           color: theme === "dark" ? "#f6f6f6" : "#181818",
+          padding: "1rem", // Add padding for better spacing
         }}
       >
         <button
           onClick={toggleTheme}
-          className="flex items-center gap-2 p-2 m-2 my-auto ml-auto rounded border shadow-sm"
+          className="flex items-center gap-2 p-2 my-auto ml-auto rounded border shadow-sm"
         >
           <i className={`fas ${theme === "light" ? "fa-moon" : "fa-sun"}`}></i>
           Toggle Theme
         </button>
         <div className="flex flex-col justify-center items-center text-center min-h-screen font-serif text-lg font-bold">
-          <h1 className="mb-8">Trivia Questions</h1>
           {loading ? (
             <p>Loading...</p>
           ) : (
@@ -84,16 +84,16 @@ export default function App() {
           )}
           {showResult ? (
             <Modal isOpen={true} onRequestClose={restartGame}>
-              <div className="flex flex-col items-center text-center font-sans text-lg font-bold p-2 m-2">
-                <h1 className="p-2 m-2">Quiz Finished!</h1>
-                <h2 className="p-2 m-2">Final Score: </h2>
+              <div className="flex flex-col items-center text-center font-sans text-lg font-bold p-2">
+                <h1 className="mb-2">Quiz Finished!</h1>
+                <h2>Final Score:</h2>
                 <h2>
                   {score} / {questionsData.length}
                 </h2>
-                <h2 className="p-2 m-2">Review: </h2>
+                <h2 className="mb-2">Review:</h2>
                 <ul>
                   {questionsData.map((question) => (
-                    <li className="p-2 m-2" key={question.id}>
+                    <li key={question.id}>
                       {question.question}
                       <div className="text-green-700">
                         Correct Answer: {question.correctAnswer}
@@ -113,7 +113,7 @@ export default function App() {
                   ))}
                 </ul>
                 <button
-                  className="rounded border cursor-pointer p-2 m-2 bg-green shadow-sm mb-4"
+                  className="rounded border cursor-pointer p-2 bg-green shadow-sm mt-4"
                   onClick={restartGame}
                 >
                   Restart Quiz
@@ -123,7 +123,7 @@ export default function App() {
           ) : (
             currentIndex === questionsData.length - 1 && (
               <button
-                className="rounded border cursor-pointer self-center p-2 m-4 shadow-sm"
+                className="rounded border cursor-pointer p-2 shadow-sm mt-4"
                 disabled={!selectedAnswers[questionsData[currentIndex].id]}
                 onClick={handleCompleteButton}
               >
