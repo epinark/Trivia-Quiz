@@ -21,7 +21,7 @@ export default function Question({
   };
 
   return (
-    <div className="flex flex-col bg-custom-color rounded-lg shadow-2xl justify-center text-center items-center p-2">
+    <div className="flex flex-col bg-custom-color rounded-lg shadow-custom justify-center text-center items-center p-2">
       <h1 className="mb-4">Trivia Questions</h1>{" "}
       <p className="p-2 m-2 mb-6">Question {currentIndex + 1}</p>
       <p>{decode(question.question)}</p>
@@ -29,10 +29,10 @@ export default function Question({
         {question.answers.map((answer, index) => (
           <div key={index}>
             <button
-              className={`flex flex-row max-w-md items-center border rounded p-2 m-2 shadow-md ${
+              className={`flex flex-row max-w-md items-center border rounded p-2 m-2 shadow-md hover:-translate-y-1 hover:scale-110 hover:bg-purple ${
                 selectedAnswers[question.id] &&
                 selectedAnswers[question.id].answer === answer
-                  ? "bg-slate-300"
+                  ? "bg-purple"
                   : ""
               }`}
               onClick={() =>
@@ -50,7 +50,7 @@ export default function Question({
       </div>
       {currentIndex < length - 1 && (
         <button
-          className={`rounded cursor-pointer border self-center p-2 m-2 shadow-md ${
+          className={`rounded cursor-pointer border ease-in self-center p-2 m-2 shadow-md ${
             selectedAnswers[question.id] ? "bg-mint" : ""
           }`}
           disabled={!selectedAnswers[question.id]}
