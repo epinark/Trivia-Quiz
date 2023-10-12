@@ -40,7 +40,9 @@ export default function App() {
     setSelectedAnswers({});
     setShowResult(false);
     setCurrentIndex(0);
+
   };
+
   const toggleTheme = () => {
     if (theme === 'light') {
       setTheme('dark');
@@ -52,7 +54,7 @@ export default function App() {
 
   return (
     <>
-      <div className={`App ${theme === 'dark' ? 'dark' : 'light'}`} style={{ backgroundColor: theme === 'dark' ? '#181818' : '#f6f6f6', color: theme === 'dark' ? '#f6f6f6' : '#181818' }}>
+      <div style={{ backgroundColor: theme === 'dark' ? '#181818' : '#f6f6f6', color: theme === 'dark' ? '#f6f6f6' : '#181818' }}>
 
         <button onClick={toggleTheme} className="flex items-center gap-2 p-2 m-2 my-auto ml-auto rounded border shadow-sm">
           <i className={`fas ${theme === 'light' ? 'fa-moon' : 'fa-sun'}`}></i>
