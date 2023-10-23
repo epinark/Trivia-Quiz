@@ -1,5 +1,5 @@
 A trivia quiz application built using React. It fetches trivia questions from an API and allows users to test their knowledge and see their scores.
-Built as a final project during the WBS Coding School bootcamp.
+
 
 ## Features ✨
 - **API Integration:** Fetch trivia questions from an external API to provide a variety of questions.
