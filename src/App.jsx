@@ -3,6 +3,8 @@ import "./App.css";
 import Question from "./components/Question";
 import axios from "axios";
 import Modal from "react-modal";
+import StartAnimation from "./components/StartAnimation";
+import "./StartAnimation.css"; // Stil dosyası
 
 export default function App() {
   const [questionsData, setQuestionsData] = useState([]);
@@ -21,7 +23,6 @@ export default function App() {
         );
         setQuestionsData(response.data);
         setLoading(false);
-        console.log(response.data);
       } catch (error) {
         console.error("Error fetching questions:", error);
         setLoading(false);
@@ -55,9 +56,9 @@ export default function App() {
     <>
       <div
         style={{
-          backgroundColor: theme === "dark" ? "#181818" : "#f6f6f6",
-          color: theme === "dark" ? "#f6f6f6" : "#181818",
-          padding: "1rem", // Add padding for better spacing
+          backgroundColor: theme === "dark" ? "#3A4750" : "#f6f6f6",
+          color: theme === "dark" ? "#f6f6f6" : "#3A4750",
+          padding: "1rem",
         }}
       >
         <button
@@ -69,7 +70,7 @@ export default function App() {
         </button>
         <div className="flex flex-col justify-center items-center text-center min-h-screen font-serif text-lg font-bold">
           {loading ? (
-            <p>Loading...</p>
+            <StartAnimation />
           ) : (
             <Question
               question={questionsData[currentIndex]}
