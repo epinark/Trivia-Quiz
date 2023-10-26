@@ -21,7 +21,7 @@ export default function Question({
   };
 
   return (
-    <div className="flex flex-col bg-custom-color rounded-lg shadow-custom justify-center text-center items-center p-2">
+    <div className="flex flex-col bg-custom-color rounded-lg shadow-custom justify-center text-center items-center p-4">
       <h1 className="mb-4">Trivia Questions</h1>{" "}
       <p className="p-2 m-2 mb-6">Question {currentIndex + 1}</p>
       <p>{decode(question.question)}</p>
