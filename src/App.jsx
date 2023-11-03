@@ -4,8 +4,10 @@ import Question from "./components/Question";
 import axios from "axios";
 import Modal from "react-modal";
 import StartAnimation from "./components/StartAnimation";
-import "./StartAnimation.css"; // Stil dosyası
+import "./StartAnimation.css";
+import popcorn from "./assets/popcorn.svg";
 
+Modal.setAppElement("#root");
 export default function App() {
   const [questionsData, setQuestionsData] = useState([]);
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -14,26 +16,31 @@ export default function App() {
   const [showResult, setShowResult] = useState(false);
   const [score, setScore] = useState(0);
   const [theme, setTheme] = useState("light");
+  const [modalIsOpen, setIsOpen] = useState(false);
+
+  const fetchQuestions = async () => {
+    try {
+      const response = await axios.get(
+        "https://wd40-trivia.onrender.com/api/questions"
+      );
+      setQuestionsData(response.data);
+      setLoading(false);
+    } catch (error) {
+      console.error("Error fetching questions:", error);
+      setLoading(false);
+    }
+  };
 
   useEffect(() => {
-    const fetchQuestions = async () => {
-      try {
-        const response = await axios.get(
-          "https://wd40-trivia.onrender.com/api/questions"
-        );
-        setQuestionsData(response.data);
-        setLoading(false);
-      } catch (error) {
-        console.error("Error fetching questions:", error);
-        setLoading(false);
-      }
-    };
-
+    // Call the fetchQuestions function when the component mounts
     fetchQuestions();
   }, []);
+
   const handleCompleteButton = () => {
     setShowResult(true);
+    openModal();
   };
+
   useEffect(() => {
     document.body.className = theme;
   }, [theme]);
@@ -41,7 +48,19 @@ export default function App() {
   const restartGame = () => {
     setSelectedAnswers({});
     setShowResult(false);
+    setScore(0);
     setCurrentIndex(0);
+    setIsOpen(false);
+  };
+
+  const resetGame = () => {
+    fetchQuestions();
+    setCurrentIndex(0);
+    setSelectedAnswers({});
+    setShowResult(false);
+    setScore(0);
+    setLoading(true);
+    setIsOpen(false);
   };
 
   const toggleTheme = () => {
@@ -51,16 +70,26 @@ export default function App() {
       setTheme("light");
     }
   };
+  const openModal = () => {
+    setIsOpen(true);
+  };
+
+  const closeModal = () => {
+    setIsOpen(false);
+  };
 
   return (
-    <>
+    <div>
       <div
         style={{
           backgroundColor: theme === "dark" ? "#3A4750" : "#f6f6f6",
           color: theme === "dark" ? "#f6f6f6" : "#3A4750",
           padding: "1rem",
+          position: "sticky",
         }}
       >
+        <span class="right-shape"></span>
+        <span class="left-shape"></span>
         <button
           onClick={toggleTheme}
           className="flex items-center gap-2 p-2 my-auto ml-auto rounded border shadow-sm"
@@ -69,6 +98,11 @@ export default function App() {
           Toggle Theme
         </button>
         <div className="flex flex-col justify-center items-center text-center min-h-screen font-serif text-lg font-bold">
+          {/* <div className="box">
+            <div className="frame">
+              <img src={popcorn} alt="" />
+            </div>
+          </div> */}
           {loading ? (
             <StartAnimation />
           ) : (
@@ -84,7 +118,21 @@ export default function App() {
             />
           )}
           {showResult ? (
-            <Modal isOpen={true} onRequestClose={restartGame}>
+            <Modal
+              isOpen={modalIsOpen}
+              onRequestClose={closeModal}
+              style={{
+                overlay: {
+                  background: "rgba(0, 0, 0, 0.6)",
+                },
+                content: {
+                  background: theme === "dark" ? "#3A4750" : "#f6f6f6",
+                  color: theme === "dark" ? "#f6f6f6" : "#3A4750",
+                  border: "none",
+                  borderRadius: "8px",
+                },
+              }}
+            >
               <div className="flex flex-col items-center text-center font-sans text-lg font-bold p-2">
                 <h1 className="mb-2">Quiz Finished!</h1>
                 <h2>Final Score:</h2>
@@ -119,6 +167,12 @@ export default function App() {
                 >
                   Restart Quiz
                 </button>
+                <button
+                  className="rounded border cursor-pointer p-2 bg-green shadow-sm mt-4"
+                  onClick={resetGame}
+                >
+                  New Game
+                </button>
               </div>
             </Modal>
           ) : (
@@ -134,6 +188,6 @@ export default function App() {
           )}
         </div>
       </div>
-    </>
+    </div>
   );
 }
