@@ -6,6 +6,7 @@ import Modal from "react-modal";
 import StartAnimation from "./components/StartAnimation";
 import "./StartAnimation.css";
 import popcorn from "./assets/popcorn.svg";
+import { decode } from "he";
 
 Modal.setAppElement("#root");
 export default function App() {
@@ -143,9 +144,9 @@ export default function App() {
                 <ul>
                   {questionsData.map((question) => (
                     <li key={question.id}>
-                      {question.question}
+                      {decode(question.question)}
                       <div className="text-green-700">
-                        Correct Answer: {question.correctAnswer}
+                        Correct Answer: {decode(question.correctAnswer)}
                       </div>
                       <div
                         style={{
@@ -156,7 +157,8 @@ export default function App() {
                               : "red",
                         }}
                       >
-                        Your Answer: {selectedAnswers[question.id].answer}
+                        Your Answer:{" "}
+                        {decode(selectedAnswers[question.id].answer)}
                       </div>
                     </li>
                   ))}
