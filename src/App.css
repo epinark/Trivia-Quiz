@@ -1,24 +1,183 @@
+#root {
+    font-family: 'Dancing Script', cursive;
+    font-family: 'Delicious Handrawn', cursive;
+    font-family: 'Open Sans', sans-serif;
+    font-family: 'Poppins', sans-serif;
+}
+
 .right-shape {
-    width: 400px;
+    width: 500px;
     height: 300px;
     position: absolute;
     z-index: -1;
-    border-radius: 75% 117% 198% 85%/121% 79% 125% 68%;
+    border-radius: 60% 40% 60% 40% / 40% 60% 30% 70%;
     right: 0;
     top: -150px;
-    background-color: #fefad1;
-
+    background: linear-gradient(to bottom, #3498db, #0f4d92);
+    opacity: .6;
 }
 
 .left-shape {
     width: 200px;
     height: 200px;
-    background-color: #3498db;
     position: absolute;
-    opacity: .8;
     z-index: -1;
     bottom: 0;
     left: 0;
-    border-radius: 50% 60% 70% 0%/20% 40% 60% 40%;
+    border-radius: 50% 60% 70% 0% / 20% 40% 60% 40%;
+    background: linear-gradient(to bottom, #fefad1, #f9f994);
+    opacity: .6;
+}
+
+.bottomleft-shape {
+    width: 100px;
+    height: 100px;
+    position: absolute;
+    z-index: -2;
+    bottom: 0;
+    left: 150px;
+    border-radius: 50% 60% 70% 40% / 20% 40% 60% 40%;
+    background: linear-gradient(to bottom, #64635a, #3d3d36);
+    opacity: .6;
+}
+
+.bottomleftthird-shape {
+    width: 200px;
+    height: 200px;
+    position: absolute;
+    z-index: -1;
+    top: 200px;
+    left: 0;
+    border-radius: 50% 60% 70% 0% / 20% 40% 60% 40%;
+    background: linear-gradient(to bottom, #e19d6f, #a68b4d);
+    opacity: .6;
+}
+
+.rightside-shape {
+    width: 250px;
+    height: 158px;
+    position: absolute;
+    z-index: -1;
+    top: 80px;
+    right: 0;
+    border-radius: 60% 40% 60% 40% / 40% 60% 30% 70%;
+    background: linear-gradient(to bottom, #64635a, #3d3d36);
+    opacity: .6;
+}
+
+.leftthird-shape {
+    width: 300px;
+    height: 300px;
+    position: absolute;
+    z-index: -1;
+    border-radius: 60% 44% 60% 40% / 40% 85% 30% 70%;
+    left: 40px;
+    top: -150px;
+    background: linear-gradient(to top, #3498db, #bf65b9);
+    opacity: .6;
+}
+
+.leftside-shape {
+    width: 250px;
+    height: 158px;
+    position: absolute;
+    z-index: -1;
+    top: 120px;
+    left: 0;
+    border-radius: 60% 40% 20% 73% / 40% 60% 30% 70%;
+    background: linear-gradient(to bottom, #64635a, #3d3d36);
+    opacity: .6;
+}
+
+.wave {
+    width: 500px;
+    height: 300px;
+    position: absolute;
+    z-index: -1;
+    border-radius: 35% 65% 70% 30% / 60% 45% 0% 40%;
+    right: 0;
+    bottom: 0px;
+    background: linear-gradient(to bottom, #f3b0c6, #0f4d92);
+    opacity: .6;
+}
+
+.wave-right {
+    width: 200px;
+    height: 200px;
+    position: absolute;
+    z-index: -2;
+    border-radius: 35% 65% 70% 30% / 60% 45% 51% 40%;
+    left: 0;
+    bottom: 100px;
+    background: linear-gradient(to bottom, #e99a33, #0f4d92);
+    opacity: .6;
+}
+
+.wave-left {
+    width: 300px;
+    height: 200px;
+    position: absolute;
+    z-index: -1;
+    border-radius: 0% 65% 70% 30% / 60% 45% 59% 40%;
+    left: 0;
+    top: 0px;
+    background: linear-gradient(to bottom, #ff6f61, #ffa07a);
+    opacity: .6;
+}
+
+.question-container {
+    width: fit-content;
+    font-weight: 200;
 
 }
+
+@media (max-width: 480px) {
+    .question-container {
+        width: 100%;
+        font-weight: 200;
+        font-size: large;
+        padding: 1rem;
+
+    }
+}
+
+@media (max-width: 480px) {
+    .question-wrapper {
+        font-size: large;
+        padding: 1rem;
+
+    }
+}
+
+
+
+
+/* Add these CSS classes in your CSS file (e.g., Question.css) */
+
+/* Initial state */
+.question-slide-enter {
+    opacity: 0;
+    transform: translateX(100%);
+}
+
+/* Transition state */
+.question-slide-enter-active {
+    opacity: 1;
+    transform: translateX(0);
+    transition: opacity 300ms, transform 300ms;
+}
+
+/* Exit state */
+.question-slide-exit {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+/* Transition state when exiting */
+.question-slide-exit-active {
+    opacity: 0;
+    transform: translateX(-100%);
+    transition: opacity 300ms, transform 300ms;
+}
+
+/* Add these classes to your Question component in the JSX */

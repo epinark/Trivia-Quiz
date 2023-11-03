@@ -18,6 +18,8 @@ export default function App() {
   const [score, setScore] = useState(0);
   const [theme, setTheme] = useState("light");
   const [modalIsOpen, setIsOpen] = useState(false);
+  const [currentSelectedAnswer, setCurrentSelectedAnswer] = useState(null);
+  const [slideIn, setSlideIn] = useState(true);
 
   const fetchQuestions = async () => {
     try {
@@ -52,12 +54,14 @@ export default function App() {
     setScore(0);
     setCurrentIndex(0);
     setIsOpen(false);
+    setCurrentSelectedAnswer(null);
   };
 
   const resetGame = () => {
     fetchQuestions();
     setCurrentIndex(0);
     setSelectedAnswers({});
+    setCurrentSelectedAnswer(null);
     setShowResult(false);
     setScore(0);
     setLoading(true);
@@ -83,27 +87,36 @@ export default function App() {
     <div>
       <div
         style={{
-          backgroundColor: theme === "dark" ? "#3A4750" : "#f6f6f6",
-          color: theme === "dark" ? "#f6f6f6" : "#3A4750",
-          padding: "1rem",
+          backgroundColor: theme === "dark" ? "#3A4750" : "#e5e7eb",
+          // color: theme === "dark" ? "#e5e7eb" : "#3A4750",
           position: "sticky",
+          height: "100vh",
         }}
       >
         <span class="right-shape"></span>
+        <span class="rightside-shape"></span>
         <span class="left-shape"></span>
-        <button
-          onClick={toggleTheme}
-          className="flex items-center gap-2 p-2 my-auto ml-auto rounded border shadow-sm"
-        >
-          <i className={`fas ${theme === "light" ? "fa-moon" : "fa-sun"}`}></i>
-          Toggle Theme
-        </button>
-        <div className="flex flex-col justify-center items-center text-center min-h-screen font-serif text-lg font-bold">
-          {/* <div className="box">
-            <div className="frame">
-              <img src={popcorn} alt="" />
-            </div>
-          </div> */}
+        <span class="leftside-shape"></span>
+        <span class="leftthird-shape"></span>
+        <span class="bottomleft-shape"></span>
+        <span class="bottomleftthird-shape"></span>
+        <span class="wave"></span>
+        <span class="wave-right"></span>
+        <span class="wave-left"></span>
+
+        <span className="absolute font-poppins text-2xl top-8 right-20 z-2 ">
+          <button
+            onClick={toggleTheme}
+            className="items-center gap-2 p-2 rounded border shadow-sm hidden sm:block"
+          >
+            <i
+              className={`fas ${theme === "light" ? "fa-moon" : "fa-sun"}`}
+              style={{ padding: "1rem" }}
+            ></i>
+            <span className="font-poppins font-extralight">Toggle Theme</span>
+          </button>
+        </span>
+        <div className="question-container flex flex-col font-poppins text-2xl text-center py-3 px-6 absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 ">
           {loading ? (
             <StartAnimation />
           ) : (
@@ -116,6 +129,8 @@ export default function App() {
               length={questionsData.length}
               setShowResult={setShowResult}
               setScore={setScore}
+              setCurrentSelectedAnswer={setCurrentSelectedAnswer}
+              slideIn={true}
             />
           )}
           {showResult ? (
@@ -131,17 +146,27 @@ export default function App() {
                   color: theme === "dark" ? "#f6f6f6" : "#3A4750",
                   border: "none",
                   borderRadius: "8px",
+                  position: "absolute",
+                  top: "50%",
+                  left: "50%",
+                  transform: "translate(-50%, -50%)",
+                  height: "fit-content",
+                  "@media (max-width: 640px)": {
+                    top: "3%",
+                    right: "4%",
+                    left: "4%",
+                  },
                 },
               }}
             >
-              <div className="flex flex-col items-center text-center font-sans text-lg font-bold p-2">
+              <div className=" flex flex-col text-center font-poppins text-2xl p-2">
                 <h1 className="mb-2">Quiz Finished!</h1>
                 <h2>Final Score:</h2>
                 <h2>
                   {score} / {questionsData.length}
                 </h2>
-                <h2 className="mb-2">Review:</h2>
-                <ul>
+                <h2 className="mb-2 gap-2">Review:</h2>
+                <ul className="flex flex-col gap-6">
                   {questionsData.map((question) => (
                     <li key={question.id}>
                       {decode(question.question)}
@@ -154,7 +179,7 @@ export default function App() {
                             selectedAnswers[question.id].answer ===
                             question.correctAnswer
                               ? "green"
-                              : "red",
+                              : "crimson",
                         }}
                       >
                         Your Answer:{" "}
@@ -164,13 +189,13 @@ export default function App() {
                   ))}
                 </ul>
                 <button
-                  className="rounded border cursor-pointer p-2 bg-green shadow-sm mt-4"
+                  className="rounded border cursor-pointer p-2 bg-green shadow-sm mt-4 w-fit self-center bg-gradient-to-b  from-pink-200 via-blue-400 to-blue-500"
                   onClick={restartGame}
                 >
                   Restart Quiz
                 </button>
                 <button
-                  className="rounded border cursor-pointer p-2 bg-green shadow-sm mt-4"
+                  className="rounded border cursor-pointer p-2 shadow-sm mt-4 w-fit self-center bg-gradient-to-b from-pink-200 via-blue-400 to-blue-500"
                   onClick={resetGame}
                 >
                   New Game
@@ -180,7 +205,7 @@ export default function App() {
           ) : (
             currentIndex === questionsData.length - 1 && (
               <button
-                className="rounded cursor-pointer p-2 shadow-custom bg-red mt-4"
+                className="question-container rounded cursor-pointer p-2 shadow-custom bg-red mt-4 w-fit self-center"
                 disabled={!selectedAnswers[questionsData[currentIndex].id]}
                 onClick={handleCompleteButton}
               >
