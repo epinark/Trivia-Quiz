@@ -29,9 +29,8 @@ export default function Question({
         {question.answers.map((answer, index) => (
           <div key={index}>
             <button
-              className={`flex flex-row max-w-md items-center border rounded p-2 m-2 shadow-md hover:-translate-y-1 hover:scale-110 hover:bg-purple ${
-                selectedAnswers[question.id] &&
-                selectedAnswers[question.id].answer === answer
+              className={`flex flex-row max-w-md items-center border rounded p-2 m-2 shadow-md transition hover:-translate-y-1 hover:scale-110 hover:bg-purple ${
+                selectedAnswers[question.id]?.answer === answer
                   ? "bg-purple"
                   : ""
               }`}
@@ -50,8 +49,8 @@ export default function Question({
       </div>
       {currentIndex < length - 1 && (
         <button
-          className={`rounded cursor-pointer border ease-in self-center p-2 m-2 shadow-md ${
-            selectedAnswers[question.id] ? "bg-mint" : ""
+          className={`rounded cursor-pointer border transition ease-in self-center p-2 m-2 shadow-md ${
+            selectedAnswers[question.id] ? "bg-purple" : ""
           }`}
           disabled={!selectedAnswers[question.id]}
           onClick={() => setCurrentIndex((prev) => prev + 1)}
