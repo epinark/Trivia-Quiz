@@ -6,6 +6,12 @@ export default {
   ],
   theme: {
     extend: {
+      fontFamily: {
+        'dancing-script': ['Dancing Script', 'cursive'],
+        'delicious-handrawn': ['Delicious Handrawn', 'cursive'],
+        'open-sans': ['Open Sans', 'sans'],
+        'poppins': ['Poppins', 'sans'],
+      },
       backgroundColor: {
         'custom-color': 'rgb(220, 199, 199)',
         'purple': '#EEE0C9',
