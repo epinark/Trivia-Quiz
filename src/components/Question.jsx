@@ -24,7 +24,7 @@ export default function Question({
 
   return (
     <div className="question-wrapper flex flex-col bg-custom-color rounded-lg gap-10 shadow-custom justify-center text-center py-8 px-8 items-center">
-      <h1 className="">Trivia Questions</h1>{" "}
+      <h1 className="font-normal">Trivia Questions</h1>{" "}
       <p className="">Question {currentIndex + 1}</p>
       <p>{decode(question.question)}</p>
       <div className="flex flex-col sm:flex-row justify-center text-center gap-5 p-2 self-center items-center">

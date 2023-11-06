@@ -46,7 +46,7 @@
     height: 200px;
     position: absolute;
     z-index: -1;
-    top: 200px;
+    top: 112px;
     left: 0;
     border-radius: 50% 60% 70% 0% / 20% 40% 60% 40%;
     background: linear-gradient(to bottom, #e19d6f, #a68b4d);
@@ -77,7 +77,7 @@
     opacity: .6;
 }
 
-.leftside-shape {
+/* .leftside-shape {
     width: 250px;
     height: 158px;
     position: absolute;
@@ -87,6 +87,10 @@
     border-radius: 60% 40% 20% 73% / 40% 60% 30% 70%;
     background: linear-gradient(to bottom, #64635a, #3d3d36);
     opacity: .6;
+} */
+.gradient-button {
+    background: linear-gradient(to bottom, rgba(254, 250, 209, 0.6), rgba(231, 168, 208, 0.6));
+
 }
 
 .wave {
@@ -103,7 +107,7 @@
 
 .wave-right {
     width: 200px;
-    height: 200px;
+    height: 30%;
     position: absolute;
     z-index: -2;
     border-radius: 35% 65% 70% 30% / 60% 45% 51% 40%;
@@ -146,6 +150,14 @@
         font-size: large;
         padding: 1rem;
 
+    }
+}
+
+@media (max-width: 640px) {
+    .content {
+        top: 3%;
+        right: 4%;
+        left: 4%;
     }
 }
 

@@ -13,14 +13,16 @@ export default {
         'poppins': ['Poppins', 'sans'],
       },
       backgroundColor: {
-        'custom-color': 'rgb(220, 199, 199)',
+        'custom-color': '#aab6ca',
         'purple': '#EEE0C9',
         'mint': '#AED8CC',
-        'red': '#A2678A'
+        'red': '#A2678A',
       },
       boxShadow: {
         'custom': '0 4px 10px rgba(0, 0, 0, 0.4)',
       },
+
+
     },
   },
   plugins: [],

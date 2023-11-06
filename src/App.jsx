@@ -35,7 +35,6 @@ export default function App() {
   };
 
   useEffect(() => {
-    // Call the fetchQuestions function when the component mounts
     fetchQuestions();
   }, []);
 
@@ -88,7 +87,6 @@ export default function App() {
       <div
         style={{
           backgroundColor: theme === "dark" ? "#3A4750" : "#e5e7eb",
-          // color: theme === "dark" ? "#e5e7eb" : "#3A4750",
           position: "sticky",
           height: "100vh",
         }}
@@ -139,23 +137,27 @@ export default function App() {
               onRequestClose={closeModal}
               style={{
                 overlay: {
-                  background: "rgba(0, 0, 0, 0.6)",
+                  position: "fixed",
+                  zIndex: 1020,
+                  top: 0,
+                  left: 0,
+                  width: "100vw",
+                  height: "100vh",
+                  background: "rgba(255, 255, 255, 0.75)",
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
                 },
                 content: {
-                  background: theme === "dark" ? "#3A4750" : "#f6f6f6",
-                  color: theme === "dark" ? "#f6f6f6" : "#3A4750",
-                  border: "none",
-                  borderRadius: "8px",
-                  position: "absolute",
-                  top: "50%",
-                  left: "50%",
-                  transform: "translate(-50%, -50%)",
-                  height: "fit-content",
-                  "@media (max-width: 640px)": {
-                    top: "3%",
-                    right: "4%",
-                    left: "4%",
-                  },
+                  background: "white",
+                  inset: "unset",
+                  width: "45rem",
+                  maxWidth: "calc(100vw - 2rem)",
+                  maxHeight: "calc(100vh - 2rem)",
+                  overflowY: "auto",
+                  position: "relative",
+                  border: "1px solid #ccc",
+                  borderRadius: "0.3rem",
                 },
               }}
             >
@@ -189,13 +191,13 @@ export default function App() {
                   ))}
                 </ul>
                 <button
-                  className="rounded border cursor-pointer p-2 bg-green shadow-sm mt-4 w-fit self-center bg-gradient-to-b  from-pink-200 via-blue-400 to-blue-500"
+                  className="gradient-button rounded border cursor-pointer p-2 bg-green shadow-sm mt-4 w-fit self-center"
                   onClick={restartGame}
                 >
                   Restart Quiz
                 </button>
                 <button
-                  className="rounded border cursor-pointer p-2 shadow-sm mt-4 w-fit self-center bg-gradient-to-b from-pink-200 via-blue-400 to-blue-500"
+                  className="gradient-button rounded border cursor-pointer p-2 shadow-sm mt-4 w-fit self-center "
                   onClick={resetGame}
                 >
                   New Game
@@ -205,7 +207,7 @@ export default function App() {
           ) : (
             currentIndex === questionsData.length - 1 && (
               <button
-                className="question-container rounded cursor-pointer p-2 shadow-custom bg-red mt-4 w-fit self-center"
+                className="gradient-button rounded cursor-pointer p-2 shadow-custom mt-4 w-fit self-center"
                 disabled={!selectedAnswers[questionsData[currentIndex].id]}
                 onClick={handleCompleteButton}
               >
