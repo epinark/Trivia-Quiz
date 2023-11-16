@@ -5,7 +5,6 @@ import axios from "axios";
 import Modal from "react-modal";
 import StartAnimation from "./components/StartAnimation";
 import "./StartAnimation.css";
-import popcorn from "./assets/popcorn.svg";
 import { decode } from "he";
 
 Modal.setAppElement("#root");
